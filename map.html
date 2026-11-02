@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Բժշկական քարտեզ — Medverse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;500;600;700&family=Noto+Serif+Armenian:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="public/css/vendor/leaflet.css" />
+  <link rel="stylesheet" href="public/css/styles.css" />
+</head>
+<body data-page="map">
+  <a class="skip" href="#main">Անցնել բովանդակությանը</a>
+  <div id="site-header"></div>
+  <main id="main" class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Երևան</p>
+          <h1>Խնամքի կետերը քաղաքի քարտեզին</h1>
+          <p class="lede">OpenStreetMap-ի իրական քարտեզ։ Կետերը Երևանի հիվանդանոցներ, կլինիկաներ, դեղատներ և բժշկական համալսարանի լաբորատորիա են։</p>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i style="background:#c24a3b"></i>Հիվանդանոց</span>
+        <span><i style="background:#146850"></i>Կլինիկա</span>
+        <span><i style="background:#5aa0c4"></i>Դեղատուն</span>
+        <span><i style="background:#b8892a"></i>Լաբորատորիա</span>
+      </div>
+      <div class="chips" id="mapChips" style="margin-bottom:16px"></div>
+      <div class="map-layout">
+        <div class="map-stage" id="mapStage"></div>
+        <div>
+          <div class="place-list" id="placeList"></div>
+          <div class="card panel" id="placeDetail" style="margin-top:12px"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="public/js/vendor/leaflet.js"></script>
+  <script src="public/js/data.js"></script>
+  <script src="public/js/yerevan-map.js"></script>
+  <script src="public/js/pages.js"></script>
+  <script src="public/js/app.js"></script>
+</body>
+</html>

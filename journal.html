@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Առողջության օրագիր — Medverse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;500;600;700&family=Noto+Serif+Armenian:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="public/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="public/css/styles.css" />
+</head>
+<body data-page="journal">
+  <a class="skip" href="#main">Անցնել բովանդակությանը</a>
+  <div id="site-header"></div>
+  <main id="main" class="page">
+    <div class="wrap">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Միայն այս բրաուզերում</p>
+          <h1>Օրագիր, որ տուն չի զանգում</h1>
+          <p class="lede">Նշումները պահվում են այս սարքի հիշողության մեջ։ Սկզբնական գրառումները կան, որ սենյակը դատարկ չթվա։ Ջնջեք ինչ ուզում եք։ Ավելացրեք այն, ինչ կասեիք ուշադիր ընկերոջը։</p>
+        </div>
+      </div>
+      <div class="journal-layout">
+        <form class="card composer" id="journalForm">
+          <p class="eyebrow">Նոր գրառում</p>
+          <div class="field">
+            <label>Տրամադրություն</label>
+            <div class="moods" id="moods"></div>
+          </div>
+          <div class="field">
+            <label for="jTitle">Վերնագիր</label>
+            <input id="jTitle" required maxlength="80" placeholder="Կարճ վերնագիր" />
+          </div>
+          <div class="field">
+            <label for="jBody">Նշում</label>
+            <textarea id="jBody" required rows="6" placeholder="Քուն, ախտանիշներ, ինչ կերաք, ինչ բաց թողեցիք…"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Պահել այս սարքում</button>
+        </form>
+        <div id="journalList"></div>
+      </div>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="public/js/data.js"></script>
+  <script src="public/js/pages.js"></script>
+  <script src="public/js/app.js"></script>
+</body>
+</html>
