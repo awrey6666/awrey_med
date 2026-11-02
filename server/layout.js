@@ -59,10 +59,9 @@ export function renderPage(req, opts) {
   <meta property="og:url" content="${esc(url)}" />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;500;600;700&family=Noto+Serif+Armenian:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/fonts/noto-serif-hy.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/css/styles.css" />
+  ${opts.head || ""}
   ${json}
 </head>
 <body>
@@ -103,7 +102,7 @@ export function renderPage(req, opts) {
     <div class="wrap legal">© ${new Date().getFullYear()} ${esc(site)}. Բովանդակությունը չի փոխարինում բժշկի խորհրդին։</div>
   </footer>
   <button class="fab" type="button" data-pro-call>Զանգել 911</button>
-  <script src="/js/pro-call.js"></script>
+  <script src="/js/pro-call.js" defer></script>
   <script>
     document.getElementById("navToggle").addEventListener("click", () => {
       document.getElementById("navLinks").classList.toggle("open");

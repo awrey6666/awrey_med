@@ -232,6 +232,8 @@ app.get("/map", (req, res) => {
     title: "Բժշկական քարտեզ Երևանում",
     description: "Երևանի հիվանդանոցներ, կլինիկաներ, դեղատներ և լաբորատորիա OpenStreetMap քարտեզի վրա։",
     path: "/map",
+    head: `<link rel="preconnect" href="https://tile0.maps.2gis.com" crossorigin />
+    <link rel="preconnect" href="https://tile1.maps.2gis.com" crossorigin />`,
     jsonLd: [crumbs(req, [{ name: "Գլխավոր", path: "/" }, { name: "Քարտեզ", path: "/map" }]), {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -267,10 +269,10 @@ app.get("/map", (req, res) => {
       </div>
       <p class="disclaimer">Քարտեզը © 2ԳԻՍ։ Կետերը հանրային հաստատություններ են, ոչ թե Medverse-ի սեփական կլինիկաներ։</p>
     </div></section>
-    <link rel="stylesheet" href="/css/vendor/leaflet.css" />
-    <script src="/js/vendor/leaflet.js"></script>
+    <link rel="stylesheet" href="/css/vendor/leaflet.css" media="print" onload="this.media='all'" />
     <script>window.YEREVAN_PLACES = ${json};</script>
-    <script src="/js/yerevan-map.js"></script>`
+    <script src="/js/vendor/leaflet.js" defer></script>
+    <script src="/js/yerevan-map.js" defer></script>`
   }));
 });
 
@@ -1028,7 +1030,9 @@ function adminCabinet(req, tab) {
 
 function photoTag(d, large) {
   if (!d.photo) return "";
-  return `<img class="avatar${large ? " lg" : ""}" src="${esc(d.photo)}" alt="${esc(d.name)}" />`;
+  const size = large ? 96 : 62;
+  const priority = large ? `fetchpriority="high"` : `loading="lazy"`;
+  return `<img class="avatar${large ? " lg" : ""}" src="${esc(d.photo)}" alt="${esc(d.name)}" width="${size}" height="${size}" decoding="async" ${priority} />`;
 }
 
 function notFound(req) {
@@ -1042,10 +1046,12 @@ function slugify(value) {
 }
 
 const publicDir = path.join(root, "public");
-app.use("/css", express.static(path.join(publicDir, "css")));
-app.use("/js", express.static(path.join(publicDir, "js")));
-app.use("/img", express.static(path.join(publicDir, "img")));
-app.use("/favicon.svg", express.static(path.join(publicDir, "favicon.svg")));
+const assetCache = { maxAge: "7d" };
+app.use("/css", express.static(path.join(publicDir, "css"), assetCache));
+app.use("/js", express.static(path.join(publicDir, "js"), assetCache));
+app.use("/img", express.static(path.join(publicDir, "img"), assetCache));
+app.use("/fonts", express.static(path.join(publicDir, "fonts"), assetCache));
+app.use("/favicon.svg", express.static(path.join(publicDir, "favicon.svg"), assetCache));
 app.use((req, res) => res.status(404).send(notFound(req)));
 
 export default app;

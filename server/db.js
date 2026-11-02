@@ -124,7 +124,11 @@ function seed() {
   const count = db.prepare("SELECT COUNT(*) AS n FROM users").get().n;
   if (count > 0) return;
   const MV = loadMock();
-  const hash = (pw) => bcrypt.hashSync(pw, 10);
+  const hash = (pw) => ({
+    "Admin123!": "$2a$10$W41GsqpTKv9R6WsBsJKSX.MNxNUbuychB06lovdydKObKnUAs.xRO",
+    "Patient123!": "$2a$10$.OMR2YeLEQPKbUsPkOiplODFy0Pn72vUyA2GCc1LxsRamxhUf7uU.",
+    "Doctor123!": "$2a$10$QE.qZ.PYLeT2VW/pF30LGuoX7GTpvDrvHRAhM/r0fIp4qXoYCmf1."
+  }[pw]);
 
   const insUser = db.prepare(`INSERT INTO users (email, password_hash, role, name, phone) VALUES (?,?,?,?,?)`);
   const admin = insUser.run("admin@medverse.local", hash("Admin123!"), "admin", "Կայքի ադմին", "");
