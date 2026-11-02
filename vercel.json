@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "app.js": {
-      "includeFiles": "public/js/data.js"
-    }
-  }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "express"
 }

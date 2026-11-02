@@ -113,7 +113,8 @@ CREATE TABLE IF NOT EXISTS settings (
 `);
 
 function loadMock() {
-  const code = fs.readFileSync(path.join(root, "public", "js", "data.js"), "utf8").replace("const MV", "MV");
+  const dataFile = fileURLToPath(new URL("../public/js/data.js", import.meta.url));
+  const code = fs.readFileSync(dataFile, "utf8").replace("const MV", "MV");
   const context = {};
   vm.runInNewContext(code, context);
   return context.MV;
